@@ -1,0 +1,63 @@
+.home{
+   background: #383838;
+   padding: 20px;
+  
+   display: flex;
+   grid-template-columns: repeat(2,7cm);
+   grid-gap: 400px;
+   list-style: none;
+
+  
+   justify-content: center;
+   
+  
+   
+  
+}
+.text{
+   text-align: -webkit-right;
+  
+ 
+
+}
+.title{
+   
+  align-content: right;
+  text-align: right;
+ 
+  font-family: 'Suez One', serif;  
+    
+}
+
+.sub_title{
+ 
+  
+   font-family: 'M PLUS Rounded 1c', sans-serif;
+   justify-content: center;
+}
+.home_img{
+   
+  height: 400px;
+  width: 300px;
+
+  
+}
+.home.home_img{
+   position: absolute;
+}
+@media screen and (max-width: 960px){
+    .title{
+       font-size: 1rem;
+    }
+    .sub_title{
+       font-size: 1rem;
+    }
+    .home{
+      grid-template-columns: repeat(2,3cm);
+      grid-gap: 50px;
+    }
+
+}
+.Filling-in-details{
+ text-align: right;
+}
