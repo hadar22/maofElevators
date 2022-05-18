@@ -3,11 +3,14 @@ import '../../App.css'
 import './Home.css'
 import './Login.css';
 import Axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 function Login() {
+    let history = useHistory()
   
     const [username, setUsername] = useState('')
     const [password, setPassword]=useState('')
+    const [loginStatus, setLoginStatus] = useState('')
     const [usernameList, setUsersList] = useState([])
 
     useEffect(() => {
@@ -17,9 +20,20 @@ function Login() {
     }, []);
 
     const login = () =>{
-        Axios.post('http://localhost:3001/api/insert',
-         {username: username, password: password}).then(()=>{
-             alert('successful insert')
+        Axios.post('http://localhost:3001/login',{
+            username: username,
+            password: password,}).then((response)=>{
+                if (response.data.message){
+                    setLoginStatus(response.data.message);
+                }else{
+                    setLoginStatus(response.data[0].username);
+                    if(response.data[0].username==='manager'){
+                        history.push("/Manager")
+                    }
+                    else{
+                        history.push(`/כניסת משתמש/${username}`)
+                    }
+                }
 
          });
 
@@ -31,11 +45,10 @@ function Login() {
             <input name="username" placeholder="שם משתמש" type="text" value={username} onChange={e => setUsername(e.target.value)}/><br/>
             <input name="password" placeholder="סיסמא" type="text" value={password} onChange={e => setPassword(e.target.value)}/>
             <button onClick={login}>התחבר </button>
-
-            {usernameList.map((val)=>{
-                return <h1> Username: {val.username} | Password: {val.password} </h1>
-
-            })}
+            <div>
+                <h1>{loginStatus}</h1>
+            </div>
+           
             
         </div>
 

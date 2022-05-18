@@ -1,15 +1,33 @@
 .home{
-   background-color: #7d7b86;
+   /*background-image: 'C:/Users/hadar/React/maofElevators/client/public/homePage.jpg';*/
    padding: 20px;
   
-   display: flex;
    grid-template-columns: repeat(2,8cm);
    grid-gap: 150px;
    list-style: none;
    justify-content: center;
+   display: block;
    
 
   
+}
+.po{
+   padding-top: 50px;
+   padding-left: 60px;
+
+}
+.t{
+   width: 300px;
+   height: 100px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+}
+.text-home{
+   font-family: 'Suez One', serif; 
+   text-align: center;
+   font-size: 40px;
 }
 .text{
    text-align: center;

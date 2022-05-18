@@ -10,6 +10,19 @@
    background-size:cover ;
    
 }
+.Filling-in-details{
+  padding: 50px 40px 50px 80px;
+  position: relative;
+  flex: 1;
+  max-width: 100%;
+  color: #111111;
+  background-color: #89d8e3;
+  text-align: center;
+
+}
+input{
+  text-align: end;
+}
 
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */

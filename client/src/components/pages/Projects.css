@@ -1,0 +1,125 @@
+.projects{
+    padding-top: 10%;
+    padding-left: 125px;
+}
+
+.scroll img {
+    margin: 10px 5px 10px 5px;
+    max-width: 250px;
+    max-height: 300px;
+}
+
+
+
+.scroll {
+    width: 500px;
+    height: 350px;
+    margin: 10px auto;
+    background: #f4f4f4;
+    border: 1px solid #000;
+    overflow-y: hidden;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgb(0 0 0 / 42%);
+}
+.gallery-block.cards-gallery .card img {
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 15%);
+}
+
+.card-img-top {
+    width: 600px;
+    height: 400px;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    border-bottom-left-radius: calc(0.25rem - 1px);
+    border-bottom-right-radius: calc(0.25rem - 1px);
+    vertical-align: middle;
+    border-style: none;
+}
+
+* {
+    font-family: 'Raleway', sans-serif;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.gallery-block.cards-gallery a {
+    color: #212529;
+}
+
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+.card {
+    width: 300px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    text-align: center;
+}
+.gallery-block.cards-gallery .card {
+    margin-bottom: 30px;
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 15%);
+}
+.gallery-block.cards-gallery .card {
+    transition: 0.4s ease;
+}
+.border-0 {
+    border: 0!important;
+}
+@media (min-width: 992px){
+    .col-lg-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+}
+
+
+@media (min-width: 768px){
+    .col-md-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+}
+.col-lg-4, .col-md-6{
+    
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.photoContainer {
+    width: 100%;
+    padding-top: 13px ;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    text-align: center;
+}

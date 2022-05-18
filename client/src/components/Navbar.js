@@ -1,6 +1,6 @@
 import React ,{ useState } from 'react';
 import './Navbar.css'
-import {Button} from './Button.css'
+//import {Button} from './Button.css'
 import {Link } from 'react-router-dom';
 //import * as Icons from "react-icons/fa";
 //import * as AiIcons from "react-icons/ai"
@@ -8,7 +8,7 @@ import {Link } from 'react-router-dom';
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true)
+  //const [button, setButton] = useState(true)
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu =() => setClick(false);
@@ -17,10 +17,10 @@ function Navbar() {
 
     return (
         <>
-         <nav className="navbar">
+         <nav className="Navbar">
               <div className="navbar-container">
                 
-                   <img src="logomaof.png" className="maof-logo" alt="logo"/>  
+                   <img src="/maofNew3.png" className="maof-logo" alt="logo"/>  
                  
                 <div className='menu-icon' onClick={handleClick}>
                   <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>

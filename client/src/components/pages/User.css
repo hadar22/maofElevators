@@ -1,0 +1,70 @@
+.user{
+    padding-top: 10%;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+.font-info{
+   /* font-family: 'Suez One', serif; 
+    font-family: 'M PLUS Rounded 1c', sans-serif;*/
+    font-family: 'Fredoka', sans-serif;
+    
+}
+.a-level{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    background-color: antiquewhite;
+}
+.done{
+    direction: rtl;
+    padding-right: 60px;
+}
+.not-done{
+    border: 2px solid blue;
+    border-radius: 15px;
+    display: inline-block;
+    background-color: lightblue;
+    
+}
+.not-done-font{
+    font-family: 'Noto Sans Hebrew', sans-serif;
+}
+.icon{
+    font-size: 30px;
+    font-family: 'Fredoka', sans-serif;
+}
+.fa-check-square{
+    color: forestgreen;
+}
+.crdd{
+    text-align: center;
+    
+    width: 450px;
+    height: 180px;
+    /*border: 2px solid black;
+    border-radius: 15px;*/
+    margin: 10px;
+    display: initial;
+
+
+   
+    
+}
+.work-plan{
+    direction: rtl;
+    overflow-y: auto;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+
+    
+}
+.view-pdf{
+    width: 500px;
+    height: 700px;
+}
+.wp{
+    font-family: 'Fredoka', sans-serif;
+    font-size: 30px;
+}
+.hr{
+    color: red;
+    height: 30px;
+}

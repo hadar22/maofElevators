@@ -1,0 +1,32 @@
+.update{
+    padding-top: 10%;
+
+}
+.font-info{
+    font-size: 30px;
+}
+.map{
+    direction: rtl;
+    padding-right: 60px;
+}
+.levelB{
+    direction: rtl;
+    padding-right: 60px;
+}
+.pdf-container{
+    width: 400px;
+    height: 600px;
+    background-color: #e4e4e4;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+.error-msg{
+    width: 100%;
+    color:red;
+    font-size: 14px;
+    font-weight: 600;
+}
