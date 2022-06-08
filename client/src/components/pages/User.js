@@ -4,7 +4,7 @@ import './User.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import {useParams} from 'react-router-dom'
 import Axios from 'axios'
-
+import {Link} from 'react-router-dom';
 import { Viewer } from '@react-pdf-viewer/core';
 import {defaultLayoutPlugin} from '@react-pdf-viewer/default-layout'
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -15,15 +15,30 @@ import {Worker} from '@react-pdf-viewer/core'
 
 function User(){
     let {username}= useParams();
+    const [file, setFile]=useState('')
+    const fileWorkPlan = "/"+file+".pdf"
     const [info, setInfoList] = useState([])
     const [stageB,setStage] = useState(false)
     const [Planning, setPlanning] = useState(false)
     const [Procurement, setProcurement] = useState(false)
     const [workPlan, setWorkPlan] = useState(false)
+    const [electricCompany, setElectricCompany] = useState('')
+    const [standardsInstitute, setStandardsInstitute] = useState('')
 
     useEffect(() => {
         Axios.get(`http://localhost:3001/check/${username}`).then((response) =>{
             setInfoList(response.data)
+            setFile(response.data[0].projectNum)
+            if(response.data[0].workPlan === 1){
+                setWorkPlan(true)
+            }
+            if(response.data[0].electricCompany !== null){
+                setElectricCompany(getDate(response.data[0].electricCompany))
+            }
+            if(response.data[0].standardsInstitute !== null){
+                setStandardsInstitute(getDate(response.data[0].standardsInstitute))
+            }
+        
         })
         
     },
@@ -42,33 +57,36 @@ function User(){
         })
         ,[]);
 
-    const uploaded = ()=>{
-        
-
-    }
     
-    const StageB =()=>{
-        Axios.get(`http://localhost:3001/stageB/${username}`).then((response)=>{
-            if(response.data[0].stageB === 1){
-              setStage(true)
-            }
-            else{
-                return null
-            }
-
-        })
-        
-    }
 
 
 
     const getDate = (date)=> {
         const [d, time] = date.split("T")
-        return d
+        const [y,m,day] =d.split("-")
+        const dayNew = parseFloat(day)+1
+        const stringDay = dayNew.toString()
+        let newDate = ""
+        if(dayNew<10){
+            newDate = "0"+stringDay+"/"+m+"/"+y
+        }else{
+            newDate = stringDay+"/"+m+"/"+y
+        }
+        console.log(stringDay+"/"+m+"/"+y )
+        return newDate
     }
+    
 
     return (
+        
         <div className='user'>
+            <nav className='logout'>
+            <Link to='/התחברות' replace className='nav-links-logout'>
+                התנתק
+            </Link>
+            
+        </nav>
+            
             <h1 className='title'> שלום {username}</h1>
             
             <div className='a-level'>
@@ -98,10 +116,17 @@ function User(){
                 <h1 className='wp'>תוכנית עבודה</h1>
                 <div className='view-pdf'>
                   <Worker workerUrl='https://unpkg.com/pdfjs-dist@2.13.216/build/pdf.worker.min.js'>
-                    <Viewer fileUrl='/2.pdf'/>  
+                    <Viewer fileUrl={fileWorkPlan}/>  
                   </Worker>
                 </div>
             </div>: null}
+            {electricCompany? 
+            <div>
+                <h1>נקבע תאריך לקבלת טופס 4</h1>
+            </div> : null}
+            {standardsInstitute? <div>
+                <h1>נקבע תאריך בדיקה של מכון התקנים - {standardsInstitute}</h1>
+            </div> : null}
             
             
             

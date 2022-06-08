@@ -1,10 +1,11 @@
 import React,{useEffect, useState} from 'react'
 import '../../App.css'
 import './ProjectDetails.css'
+import Popup from '../Popup'
 import 'bootstrap/dist/css/bootstrap.css'
-import {useParams} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
 import Axios from 'axios'
-
+//import {Link} from 'react-router-dom'
 import { Viewer } from '@react-pdf-viewer/core';
 import {defaultLayoutPlugin} from '@react-pdf-viewer/default-layout'
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -12,9 +13,12 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 import {Worker} from '@react-pdf-viewer/core'
 
 
+
 function ProjectDetails(){
      
     let {username}= useParams();
+    const [projectNum, setProjectNum]= useState('')
+    const fileWork = "/"+ projectNum +".pdf"
     const [my, setMy] = useState(null)
     const getData = async ()=>{
         try{
@@ -26,15 +30,16 @@ function ProjectDetails(){
         }
     }
     //let planning = Axios.get(`http://localhost:3001/planning/${username}`).data.planning;
-    
+    const [popupOpen,setPopup]= useState(false)
     const [info, setInfoList] = useState([])
     const [A,setA]= useState(false)
     const [workOffice,setWorkOffice] = useState('')
-    const [dateSignature, setDaeSignature]= useState('')
+    const [dateSignature, setDateSignature]= useState('')
     const [elevatorType, setElevatorType] = useState('')
     const [endDate, setEndDate] = useState('')
     const [engineer,setEngineer] = useState('')
     const [addEngin, setAddEngineer] = useState(false)
+    const [noEngineer, setNoEngineer]= useState(false)
     const [Planning, setPlanning] = useState(false)
     const [Procurement, setProcurement] = useState(false)
     const [workPlan, setWorkPlan] =  useState(false)
@@ -43,10 +48,15 @@ function ProjectDetails(){
     const [file,setFile] = useState(null)
     const [viewPdf ,  setViewPdf]= useState(null)
     const defaultLayoutPluginInstance = defaultLayoutPlugin()
-    
+
+    const [electricCompany, setElectricCompany] = useState('')
+    const [standardsInstitute, setStandardsInstitute] = useState('')
+    const [receivElevator, setReceivElevator] = useState('')
+
     useEffect(() => {
         Axios.get(`http://localhost:3001/check/${username}`).then((response) =>{
             setInfoList(response.data)
+            setProjectNum(response.data[0].projectNum)
             //console.log(response.data[0].engineer)
             if(response.data[0].workOffice !== null){
                 setA(true)
@@ -61,9 +71,20 @@ function ProjectDetails(){
             if(response.data[0].workPlan === 1){
                 setWorkPlan(true)
             }
-            if(response.data[0].engineer !== 'null'){
+            if(response.data[0].engineer !== null ){
                 setAddEngineer(true)
+                
                 setEngineer(response.data[0].engineer)
+            }
+            if(response.data[0].electricCompany !== null){
+                
+                setElectricCompany(getDate(response.data[0].electricCompany))
+            }
+            if(response.data[0].standardsInstitute !== null){
+                setStandardsInstitute(getDate(response.data[0].standardsInstitute))
+            }
+            if(response.data[0].receivElevator !== null){
+                setReceivElevator(getDate(response.data[0].receivElevator))
             }
         })
         
@@ -80,8 +101,38 @@ function ProjectDetails(){
         });
         setA(true)
         //setInfoList([...info, {username:username, workOffice: workOffice,elevatorType: elevatorType,endDate: endDate},])
+     
         alert("תודה שמילאת את הפרטים")
+        
     }
+    const dateOfElectric = () =>{
+        Axios.post(`http://localhost:3001/dateOfElectric/${username}`,{
+            electricCompany: electricCompany
+        });
+        alert(electricCompany)
+        setElectricCompany(electricCompany)
+    }
+    const dateOfStandardsInstitute= ()=>{
+        Axios.post(`http://localhost:3001/dateOfStandards/${username}`,{
+            standardsInstitute: standardsInstitute
+        });
+
+        setStandardsInstitute(standardsInstitute)
+    }
+    const dateOfReceivElevator = ()=>{
+        Axios.post(`http://localhost:3001/receivElevator/${username}`,{
+            receivElevator: receivElevator
+        });
+        setReceivElevator(receivElevator)
+    
+    }
+    const ddd = ()=>{
+        Axios.get('http://localhost:3001/getDatee').then((response)=>{
+            console.log("get thhe date-", response.data)
+        })
+        
+    }
+   
     
    
     const planning =  () =>{
@@ -96,6 +147,9 @@ function ProjectDetails(){
   
         
     }
+    const togglePopup=()=>{
+        setPopup(!popupOpen)
+    }
    
     const addEngineer = () =>{
         Axios.post(`http://localhost:3001/addEngineer/${username}`,{
@@ -104,9 +158,23 @@ function ProjectDetails(){
         setAddEngineer(true)
         alert('שם המהנדס נשמר במערכת')
     }
+    const no_engineer=()=>{
+        setNoEngineer(true)
+    }
     const getDate = (date)=> {
-        const [d, time] = date.split("T")
-        return d
+        console.log("date" ,date)
+        const [d, ] = date.split("T")
+        const [y,m,day] =d.split("-")
+        const dayNew = parseFloat(day)+1
+        const stringDay = dayNew.toString()
+        let newDate = ""
+        if(dayNew<10){
+            newDate = "0"+stringDay+"/"+m+"/"+y
+        }else{
+            newDate = stringDay+"/"+m+"/"+y
+        }
+        console.log(stringDay+"/"+m+"/"+y )
+        return newDate
     }
     const fileType = ['application/pdf']
     const handlePdfFileChange = (e)=>{
@@ -144,7 +212,7 @@ function ProjectDetails(){
             
             const data= new FormData()
             data.append('file', file)
-            Axios.post('//localhost:3001/upload',data).then((e)=>{
+            Axios.post(`//localhost:3001/upload/${username}`,data).then((e)=>{
                 console.log('Success')
             }).catch((e)=>{
                 console.error('Error', e)
@@ -160,35 +228,78 @@ function ProjectDetails(){
  
     return (
         <div className='update'>
+        <nav className='logout'>
+            <Link to='/התחברות' replace className='nav-links-logout'>
+                התנתק
+            </Link>
+            
+        </nav>
+            
             <h1 className='title'>עדכון פרטים ל{username}</h1>
             {A? <div className='map'>{info.map((val)=>{ return <h1 className='font-info'> משרד העבודה: {val.workOffice} <br/>
                   תאריך חתימת חוזה: {getDate(val.dateSignature) } <br/>
                   תאריך גמר: {getDate(val.endDate)}<br/>
+                  סוג המעלית: {val.elevatorType}
                  
                   </h1> 
                 })}</div>:<div className='levelA'>
-                <h1 className='title'>עדכון אחרי חתימת חוזה-שלב א</h1>
-                 <input name="workOffice" placeholder="מספר ממשרד העבודה" type="number" value={workOffice} onChange={e => setWorkOffice(e.target.value)}/><br/>
-                 <input name="dateSignature" placeholder="תאריך חתימת החוזה" type="date" value={dateSignature} onChange={e => setDaeSignature(e.target.value)}/><br/>
-                 <input name="elevatorType" placeholder='סוג המעלית' type="text" value={elevatorType} onChange={e => setElevatorType(e.target.value)}/><br/>
-                 <input name="endDate" placeholder='תאריך גמר הפרויקט' type="date" value= {endDate} onChange ={e => setEndDate(e.target.value)}/>
+                    <form className='form-update'>
+                        <h1 className='title'>עדכון אחרי חתימת חוזה-שלב א</h1>
+                        <div className="input_field">
+                            <input name="workOffice" placeholder="מספר ממשרד העבודה" type="number" value={workOffice} onChange={e => setWorkOffice(e.target.value)}/><br/>
+                        </div>
+                        <div className="input_field">
+                            <label for='dateSignature'>תאריך חתימת חוזה</label><br/>
+                            <input name="dateSignature" placeholder="תאריך חתימת החוזה" type="date" value={dateSignature} onChange={e => setDateSignature(e.target.value)}/><br/>
+                        </div>
+                        <div className="input_field">
+                            
+                            <select name="elevatorType" placeholder='סוג המעלית' type="text" onChange={e => setElevatorType(e.target.value)}>
+                                <option value="">בחר סוג מעלית</option>
+                                <option value="MRL" >MRL</option>
+                                <option value="Hydraulic" >Hydraulic</option>
+                                <option value="maalon">מעלון</option>
+                                
+                            </select>
+                        </div>
+                        <div className="input_field">
+                            <label for='endDate'>תאריך גמר פרויקט</label><br/>
+                            <input name="endDate" placeholder='תאריך גמר הפרויקט' type="date" value= {endDate} onChange ={e => setEndDate(e.target.value)}/>
+                        </div>
+                        
+                        
                 
-                 <button onClick={updateA}>עדכן שלב א</button></div>
-                  
-            
-}
+                        <button className='butt' onClick={updateA}>עדכן שלב א</button>
+                        
+                    </form> </div>}
+                    <div>
+                        
+                        {popupOpen && <Popup
+                        handleClose={togglePopup}
+                        content={
+                            <div> 
+                                <h2>שם המהנדס</h2>
+                                <form className='form-update'>
+                                <input name="engineer" type="text" value= {engineer} onChange ={e => setEngineer(e.target.value)}/>
+                                <button onClick={addEngineer}>שמור</button>
+                                </form>
+                            </div>
+                        }/>}
+                    </div>
+                    
             <div className='engineer'>
-            
-                <p className='ans'>?האם צריך היתר בנייה</p>
-                <button onClick={addEngineer}>כן</button>
-                
-                {addEngin? <h1>{engineer} :יש כבר מהנדס </h1> :<div>
-                    <p> אם כן הוסף את שמו של המהנדס</p>
-                <input name="engineer" placeholder='שם המהנדס להיתר' type={'text'} value={engineer} onChange={e => setEngineer(e.target.value)}/>
-                <button onClick={addEngineer}>שמור</button>
+              
+            {addEngin? <div> {noEngineer? <h1>לפרויקט זה לא צריך היתר בנייה</h1> : <h1>שם המהנדס- {engineer}</h1>}</div> :<div>
+                    <p className='ans'>?האם צריך היתר בנייה</p>
+                    <div>
+                       <button onClick={togglePopup}>כן</button>
+                       <button onClick={no_engineer}>לא</button>
+                    </div>
+                    
                 </div> }
                 
-               
+                
+              
             </div>
             <div className='levelB'>
                 <h1 className='title'>שלב ב</h1>
@@ -203,15 +314,23 @@ function ProjectDetails(){
 
             </div>
 
-            <div className='labelC'>
+            <div className='levelC'>
                 <h1 className='title'>שלב ג - תוכנית עבודה</h1>
+                {workPlan? <div className='work-plan'>
+                
+                <div className='view-pdf'>
+                  <Worker workerUrl='https://unpkg.com/pdfjs-dist@2.13.216/build/pdf.worker.min.js'>
+                    <Viewer fileUrl= {fileWork}/>  
+                  </Worker>
+                </div>
+            </div>:<div>
                 <h3 >העלה קובץ ובו מפורטים כל המשימות שצריך לבצע </h3>
                 <h3>שים לב ששם הקובץ הוא מספר הפרויקט</h3>
                 <h4>numOfProject.pdf</h4>
-                <div className='container'>
+                <div className='container-PD'>
                     <br></br>
                     <form className='form-group' onSubmit={handlePdfFileSubmit}>
-                        <input type ="file" className='form-control'
+                        <input type ="file" className='form_control'
                           required onChange={handlePdfFileChange}/>
                         {pdfFileError&& <div className='error-msg'>{pdfFileError}</div>}
                         <br></br>
@@ -230,6 +349,48 @@ function ProjectDetails(){
                         
                     </div>
                 </div>
+                </div>}
+            </div>
+            <div className='levelD'>
+                <h1 className='title'>שלב ד</h1>
+                
+                <div className='card-D'>
+                <h2>אחרי קבלת טופס 4 מחברת החשמל </h2>
+                <h3>התקשר למכון התקנים לתאם בדיקה</h3>
+                <form className='elec-data'>
+                        <div className="input_field">
+                            <label for='standardsInstitute'>תאריך לבדיקת מכון התקנים</label><br/>
+                            <input name="standardsInstitute" type="date" value={standardsInstitute} onChange={e => setStandardsInstitute(e.target.value)}/><br/>
+                        </div>
+                        <button onClick={dateOfStandardsInstitute}>שמור/עדכן</button>
+                    </form>
+                </div>
+                <div className='card-D'>
+                <h2>אחרי סיום כל המשימות והמעלית מוכנה לנסיעה </h2>
+                <h3>התקשר לחברת החשמל </h3>
+                    <form className='elec-data'>
+                        <div className="input_field">
+                            <label for='electricCompany'>תאריך לטופס 4</label><br/>
+                            <input name="electricCompany" type="date" value={electricCompany} onChange={e => setElectricCompany(e.target.value)}/><br/>
+                        </div>
+                        <button onClick={dateOfElectric}>שמור/עדכן</button>
+                    </form>
+                </div>
+                
+
+            </div>
+            <div className='levelE'>
+                <h1 className='title'>שלב ה- קבלת המעלית</h1>
+                <h3>בדוק וסגור עם הלקוחות את כל ההיבטים הכספיים, אחרי זה קבע איתם יום לקבלת המעלית</h3>
+                <form className='elec-data'>
+                        <div className="input_field">
+                            <label for='receivElevator'>תאריך יום קבלת המעלית : {receivElevator}</label><br/>
+                            <input name="receivElevator" type="date" value={receivElevator} onChange={e => setReceivElevator(e.target.value)}/><br/>
+                        </div>
+                        <button onClick={dateOfReceivElevator}>שמור/עדכן</button>
+                    </form>
+
+                
             </div>
     
         </div>

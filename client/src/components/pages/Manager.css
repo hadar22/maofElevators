@@ -1,14 +1,130 @@
 .manager{
     padding-top: 10%;
+    
+    
+}
+.nav-links-logout{
+    color: rgb(15, 15, 17);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem ;
+    height: 100%;
+    font-family: 'Suez One', serif; 
+    border: 2px solid aqua;
+    border-radius: 15px;
+    width: 70px;
+}
+.logout{
+   
+    padding-left: 50px;
+}
+
+.add_user{
+    direction: rtl;
+    padding-right: 30px;
+    /*padding: 50px 40px 50px 80px;*/
+    padding: 30px;
+    box-shadow: 1px 1px 2px rgba((0,0,0,0.125), green, blue, alpha);
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+    width: 100%;
+    background-color: rgb(154, 240, 240);
+    margin: 20px auto;
+    color: #111111;
+   
     text-align: center;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  
+}
+.update-projects{
+    padding-top: 5%;
+}
+.form-add_user{
+    width: 100%;
+}
+.input_field{
+    margin-bottom: 2px;
+    
+    align-items: center;
+    font-family:'Fredoka', sans-serif;
+    font-size: inherit;
+}
+.title-add {
+    margin-bottom: 0px;
+}
+input{
+    direction: ltr;
+    outline: none;
+    border: 1px solid rgba(135, 85, 221, 0.733);
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    
+}
+label{
+    width: 200px;
+    color: #17171855;
+    font-family:'Fredoka', sans-serif ;
+    margin-right: 10px;
+    font-size: 14px;
+    
+}
+
+.butt{
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 0;
+    background: #1717182d;
+    color: black;
+    cursor:pointer ;
+    border-radius: 30px;
+    outline: none;
+    font-family:'Fredoka', sans-serif;
+}
+.butt:hover{
+    background: #1c1ce02d;
 }
 
 .users-card{
-    width: 250px;
-    height: 150px;
-    border: 2px solid black;
+    font-size: 20px;
+    font-family: 'Suez One', serif;
+    text-align: center;
+    width: 270px;
+    height: 170px;
+    border: 2px solid aqua;
     border-radius: 15px;
     margin: 10px;
+    padding-top: 20px;
+    color: darkslategray;
+    /*background-color: azure;*/
     
+}
+.grid-projects{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 33.333333%);
+    padding-left: 120px ;
+}
+.btns{
+  padding-top: 20px ;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 50%);
+  padding-left: 50px ;
+  font-family: 'Suez One', serif;
+  font-size: 16px;
+}
+.btn-del{
+   width: 60px;
+   color: red;
+   background-color: bisque;
+   border: 0;
+    
+}
+.btn-update{
+    width: 60px;
+    color: green;
+    background-color: rgb(169, 201, 169);
+    border: 0;
 }

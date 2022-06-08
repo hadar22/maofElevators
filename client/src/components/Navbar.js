@@ -1,5 +1,6 @@
 import React ,{ useState } from 'react';
 import './Navbar.css'
+import {NavDropdown} from 'react-bootstrap'
 //import {Button} from './Button.css'
 import {Link } from 'react-router-dom';
 //import * as Icons from "react-icons/fa";
@@ -7,6 +8,8 @@ import {Link } from 'react-router-dom';
 
 
 function Navbar() {
+  
+  
   const [click, setClick] = useState(false);
   //const [button, setButton] = useState(true)
 
@@ -29,9 +32,10 @@ function Navbar() {
                  
                 <ul className={click? 'nav-menu active' : 'nav-menu'}>
                 <li className='nav-item'>
-                      <Link to='/התחברות' className='nav-links-1' onClick={closeMobileMenu}>
+                 <Link to='/התחברות' className='nav-links-1' onClick={closeMobileMenu}>
                          כניסת לקוח
                       </Link>
+                      
                     </li>
                     <li className='nav-item'>
                       <Link to='/צור קשר' className='nav-links' onClick={closeMobileMenu}>
@@ -70,6 +74,7 @@ function Navbar() {
               </div>
 
          </nav> 
+         
         </>
     );
 }

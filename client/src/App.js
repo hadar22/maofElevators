@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './components/pages/Home';
 import ContactUs from './components/pages/ContactUs';
@@ -9,6 +10,7 @@ import Manager from './components/pages/Manager';
 import ProjectDetails from './components/pages/ProjectDetails'
 import User from './components/pages/User';
 import Projects from './components/pages/Projects'
+
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
         <Route path='/עדכוןפרטים/:username' exact component={ProjectDetails}/>
         <Route path='/כניסת משתמש/:username' exact component={User}/>
         <Route path='/פרויקטים' exact component={Projects}/>
+        
       </Switch>
+      <Footer/>
       </Router> 
     </>
   );
