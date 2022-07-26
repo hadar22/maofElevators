@@ -1,0 +1,22 @@
+.aboutUs{
+    padding-top: 10%;
+    direction: rtl;
+    grid-template-columns: repeat(2,800cm);
+    background-color: ghostwhite;
+}
+.ppp{
+    font-size: 20px;
+    font-family:'Fredoka', sans-serif;
+}
+.icon-about{
+    font-size: xx-large;
+    margin-inline: 40px;
+    margin-bottom: 30px;
+    color: gold;
+
+}
+.Paragraph{
+    display: flex;
+    font-family:'Fredoka', sans-serif;
+ 
+}

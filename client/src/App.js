@@ -10,8 +10,10 @@ import Manager from './components/pages/Manager';
 import ProjectDetails from './components/pages/ProjectDetails'
 import User from './components/pages/User';
 import Projects from './components/pages/Projects'
-
-
+import AboutUs from './components/pages/AboutUs'
+import Services from './components/pages/Services'
+import ServiceTracking from './components/pages/ServiceTracking'
+import Process from './components/pages/Process'
 function App() {
   return (
    <>
@@ -25,7 +27,10 @@ function App() {
         <Route path='/עדכוןפרטים/:username' exact component={ProjectDetails}/>
         <Route path='/כניסת משתמש/:username' exact component={User}/>
         <Route path='/פרויקטים' exact component={Projects}/>
-        
+        <Route path='/אודות' exact component={AboutUs}/>
+        <Route path='/שירותים' exact component={Services}/>
+        <Route path='/מעקב שירות' exact component={ServiceTracking}/>
+        <Route path='/התהליך' exact component={Process}/>
       </Switch>
       <Footer/>
       </Router> 

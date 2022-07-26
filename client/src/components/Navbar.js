@@ -1,10 +1,9 @@
 import React ,{ useState } from 'react';
 import './Navbar.css'
-import {NavDropdown} from 'react-bootstrap'
+
 //import {Button} from './Button.css'
 import {Link } from 'react-router-dom';
-//import * as Icons from "react-icons/fa";
-//import * as AiIcons from "react-icons/ai"
+
 
 
 function Navbar() {

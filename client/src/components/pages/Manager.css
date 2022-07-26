@@ -1,23 +1,32 @@
 .manager{
-    padding-top: 10%;
+    padding-top: 7%;
     
     
 }
 .nav-links-logout{
-    color: rgb(15, 15, 17);
+    background: gainsboro;
     display: flex;
     align-items: center;
     text-decoration: none;
     padding: 0.5rem ;
     height: 100%;
-    font-family: 'Suez One', serif; 
-    border: 2px solid aqua;
-    border-radius: 15px;
+    font-family:'Fredoka', sans-serif;
+    border: 2.5px solid #323d3d;
+    border-radius: 10px;
     width: 70px;
+    margin-left: 120px;
 }
 .logout{
    
     padding-left: 50px;
+}
+.btn-service{
+    border: 2px solid #111111;
+    text-decoration: none;
+    font-family: 'Suez One', serif;
+    font-size: 25px;
+    margin-left: 70px;
+    
 }
 
 .add_user{
@@ -104,8 +113,15 @@ label{
 }
 .grid-projects{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 33.333333%);
+    grid-template-columns: repeat(3, 30.333333%);
     padding-left: 120px ;
+}
+@media screen and (max-width: 1000px){
+    .grid-projects{
+        display: grid;
+        grid-template-columns: repeat(2, 35.333333%);
+        padding-left: 20px ;
+    }
 }
 .btns{
   padding-top: 20px ;
@@ -127,4 +143,15 @@ label{
     color: green;
     background-color: rgb(169, 201, 169);
     border: 0;
+}
+.add_project-btn{
+    font-size: 25px;
+    font-family: 'Suez One', serif;
+    margin-left: 70px;
+}
+.grid-btn{
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 40%);
+    
 }

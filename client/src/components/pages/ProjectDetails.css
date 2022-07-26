@@ -122,7 +122,20 @@ select{
     align-items: center;
     padding-bottom: 30px;
 }
-
+.work-plan{
+    direction: rtl;
+    overflow-y: auto;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+.btn-PD{
+    font-family:'Fredoka', sans-serif;
+    margin-left: 50px;
+    border-radius: 10px;
+    font-weight: 600;
+    
+}
 
 
 /*

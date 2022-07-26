@@ -24,10 +24,13 @@ function User(){
     const [workPlan, setWorkPlan] = useState(false)
     const [electricCompany, setElectricCompany] = useState('')
     const [standardsInstitute, setStandardsInstitute] = useState('')
+    const [receivElevator, setReceivElevator] = useState('')
+    
 
     useEffect(() => {
         Axios.get(`http://localhost:3001/check/${username}`).then((response) =>{
             setInfoList(response.data)
+            console.log()
             setFile(response.data[0].projectNum)
             if(response.data[0].workPlan === 1){
                 setWorkPlan(true)
@@ -37,6 +40,9 @@ function User(){
             }
             if(response.data[0].standardsInstitute !== null){
                 setStandardsInstitute(getDate(response.data[0].standardsInstitute))
+            }
+            if(response.data[0].receivElevator !== null){
+                setReceivElevator(getDate(response.data[0].receivElevator))
             }
         
         })
@@ -87,7 +93,7 @@ function User(){
             
         </nav>
             
-            <h1 className='title'> שלום {username}</h1>
+            <h1 className='title-user'> שלום {username}</h1>
             
             <div className='a-level'>
                <hr className='hr'/>
@@ -106,32 +112,44 @@ function User(){
                    </div>: <div><div className='done'>
                 <div className='icon'><i className="fas fa-check-square"></i>תכנון מול ספקים</div>
                 </div>
-                <div className='not-done'><h1>עכשיו אנחנו בתהליך הרכש לרכיבי המעלית</h1></div> 
+                <div className='not-done'><h1 className='pro'>עכשיו אנחנו בתהליך הרכש לרכיבי המעלית</h1></div> 
                     
                        </div>}
                 </div> 
-                :<div className='not-done'><h1>אנחנו עכשיו בשלב תכנון המעלית מול הספקים</h1></div> }
+                :<div className='not-done'><h1 className='pro'>אנחנו עכשיו בשלב תכנון המעלית מול הספקים</h1></div> }
             </div>
-            {workPlan? <div className='work-plan'>
-                <h1 className='wp'>תוכנית עבודה</h1>
+            <div className='row-2'>
+                <div className='col_2'>
+                {workPlan? <div className='work-plan-2'>
+                <h1 className='wp'>תוכנית עבודה  <a className='link' href={fileWorkPlan} download>הורד קובץ</a></h1>
+                
                 <div className='view-pdf'>
                   <Worker workerUrl='https://unpkg.com/pdfjs-dist@2.13.216/build/pdf.worker.min.js'>
                     <Viewer fileUrl={fileWorkPlan}/>  
                   </Worker>
+                  
                 </div>
             </div>: null}
-            {electricCompany? 
-            <div>
-                <h1>נקבע תאריך לקבלת טופס 4</h1>
-            </div> : null}
-            {standardsInstitute? <div>
-                <h1>נקבע תאריך בדיקה של מכון התקנים - {standardsInstitute}</h1>
-            </div> : null}
+            
+                </div>
+                <div className='col_2'>
+                    {receivElevator? <div className='end'>
+                        <i class="fas fa-glass-cheers"></i>
+                        <h1 className='end-title'>תאריך קבלת המעלית {receivElevator} הדיירים מוזמנים לקבלת המעלית , לתדרוך והסבר שימוש</h1>
+                        <h3 className='end-finish'> תודה רבה על שיתוף הפעולה, סיימנו אבל נמשיך להיות בקשר.</h3>
+                    </div>:<div>{electricCompany? 
+                    <div className='dates'>
+                        <h1 className='date'>חברת החשמל יגיעו בתאריך {electricCompany}</h1>
+                    </div> : null}
+                    {standardsInstitute? <div className='dates'>
+                         <h1 className='date'>נקבע תאריך בדיקה של מכון התקנים - {standardsInstitute}</h1>
+                        </div> : null}</div>}
+                    
             
             
-            
+                </div>
                 
-                        
+        </div>              
             
             
             

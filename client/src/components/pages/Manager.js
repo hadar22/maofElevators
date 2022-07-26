@@ -50,7 +50,11 @@ function Manager(){
         
     };
     const togglePopup =()=>{
+    
       setPopup(!popupOpen)
+    }
+    const service =()=>{
+      history.push('/מעקב שירות')
     }
     
 
@@ -63,9 +67,14 @@ function Manager(){
             </Link>
             
         </nav>
-        <button className='add_project-btn' onClick={togglePopup}>
+        <div className='grid-btn'>
+          <button className='add_project-btn' onClick={togglePopup}>
           הוספת פרויקט חדש<i className='fa fa-plus-circle'></i>
-         </button>
+          </button>
+          <button className='btn-service' onClick={service}>מעקב אחרי שירות</button>
+        </div>
+          
+         
          <div>
            {popupOpen && <Popup handleClose={togglePopup}
            content={

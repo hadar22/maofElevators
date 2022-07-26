@@ -1,16 +1,16 @@
 .user{
     padding-top: 10%;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    background-color: ghostwhite;
+    
 }
 .font-info{
-   /* font-family: 'Suez One', serif; 
-    font-family: 'M PLUS Rounded 1c', sans-serif;*/
+   
     font-family: 'Fredoka', sans-serif;
     
 }
 .a-level{
     font-family: 'M PLUS Rounded 1c', sans-serif;
-    background-color: antiquewhite;
+    background-color: rgb(237, 237, 236);
 }
 .done{
     direction: rtl;
@@ -29,9 +29,13 @@
 .icon{
     font-size: 30px;
     font-family: 'Fredoka', sans-serif;
+    padding-top: 20px;
+    font-weight: 900;
+
 }
 .fa-check-square{
     color: forestgreen;
+    padding-left: 10px;
 }
 .crdd{
     text-align: center;
@@ -42,29 +46,83 @@
     border-radius: 15px;*/
     margin: 10px;
     display: initial;
-
-
-   
-    
+  
 }
-.work-plan{
-    direction: rtl;
+.pro{
+    font-family: 'Fredoka', sans-serif;
+}
+.work-plan-2{
+    direction: ltr;
     overflow-y: auto;
     /*display: flex;*/
     justify-content: center;
     align-items: center;
+    color: purple;
 
     
 }
 .view-pdf{
     width: 500px;
-    height: 700px;
+    height: 600px;
 }
 .wp{
     font-family: 'Fredoka', sans-serif;
     font-size: 30px;
+    text-align: center;
 }
 .hr{
     color: red;
     height: 30px;
+}
+.dates{
+    direction: rtl;
+    font-family: 'Fredoka', sans-serif;
+    margin-right: 80px;
+    padding-top: 75px;
+}
+.row-2{
+    display: inline-flex;
+    direction: rtl;
+
+}
+.col_2{
+    width: auto;
+    padding-top: 25px;
+    padding-left: 40px;
+}
+.end{
+    padding: 100px 20px;
+    text-align: center;
+
+}
+.end-title{
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 900;
+    color: dimgrey;
+
+}
+.date{
+    font-weight: 600;
+    text-align: center;
+    color: forestgreen;
+    font-size: 35px;
+    border: 5px solid #dfe6e6;
+    border-radius: 15px;
+}
+.fa-glass-cheers{
+    font-size: 100px;
+    color: purple;
+    
+}
+.title-user{
+    color: purple;
+    font-family:'Fredoka', sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+.link{
+    font-size: 16px;
+}
+.end-finish{
+    font-family: 'Fredoka', sans-serif;
 }

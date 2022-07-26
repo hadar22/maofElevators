@@ -9,10 +9,19 @@
 
     
 }
-.title{
+.title-login{
     margin-bottom: 40px;
+    position: absolute;
+    top: 130px;
 }
-.login input{
+.photo-login{
+    width: 1000px;
+    position: relative;
+}
+.inputs{
+    position: absolute;
+}
+.input-login{
     text-align: center;
     width: 300px;
     height: 40px;
@@ -20,10 +29,12 @@
     font-family: 'Noto Sans Hebrew', sans-serif;
 }
 .btn-login{
-    border: none;
+    
     border-radius: 10px;
     width: 150px;
     height: 40px;
     font-family: 'Noto Sans Hebrew', sans-serif;
+    bottom: 220px;
+    position: absolute;
 
 }

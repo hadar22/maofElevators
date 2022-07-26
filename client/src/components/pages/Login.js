@@ -42,9 +42,13 @@ function Login() {
         
     return (
         <div className='login'>
-            <h2 className='title'> השם משתמש והסיסמא שקיבלתם מהחברה</h2>
-            <input className='input-login' name="username" placeholder="שם משתמש" type="text" value={username} onChange={e => setUsername(e.target.value)}/><br/>
-            <input className='input-login' name="password" placeholder="סיסמא" type="text" value={password} onChange={e => setPassword(e.target.value)}/>
+            <img className='photo-login' src='/background-contactus.jpg'/>
+            <h2 className='title-login'> השם משתמש והסיסמא שקיבלתם מהחברה</h2>
+            <div className='inputs'>
+                <input className='input-login' name="username" placeholder="שם משתמש" type="text" value={username} onChange={e => setUsername(e.target.value)}/><br/>
+                <input className='input-login' name="password" placeholder="סיסמא" type="text" value={password} onChange={e => setPassword(e.target.value)}/>
+            </div>
+            
             <button className='btn-login' onClick={login} >התחבר </button>
             <div>
                 <h1>{loginStatus}</h1>

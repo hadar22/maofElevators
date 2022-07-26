@@ -1,0 +1,30 @@
+.services{
+    direction: rtl;
+    padding-top: 10%;
+    background-color: ghostwhite;
+}
+.icon-service{
+    font-size: xx-large;
+    margin-inline: 40px;
+    margin-bottom: 30px;
+    color: green;
+}
+.txt-service{
+    font-family:'Fredoka', sans-serif;
+}
+.service{
+    display: flex;
+    
+}
+.photo-service{
+    width: 300px;
+    float: left;
+    margin-left: 60px;
+}
+.title-service{
+    font-family:'Fredoka', sans-serif;
+    text-align: center;
+    padding-bottom: 20px;
+    
+    
+}

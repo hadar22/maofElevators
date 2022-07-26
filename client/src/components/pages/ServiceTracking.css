@@ -1,0 +1,46 @@
+.service-tracking{
+    padding-top: 10%;
+}
+.add_new_project{
+    direction: rtl;
+}
+.list-place{
+    direction: rtl;
+}
+.btn-ap{
+    margin-right: 40px;
+}
+
+.values{
+    border-bottom: 2.5px solid #323d3d;
+    width: 600px;
+}
+.place{
+    color: blueviolet;
+    font-size: 30px;
+    font-family: 'Suez One', serif;
+
+}
+.btns-add-del{
+    padding: 8px 10px ;
+}
+.graphh{
+    width: 700px;
+    padding-top: 10%;
+
+}
+.btn-delete{
+    margin-right: 180px;
+}
+.btn-add{
+    margin-right: 40px;
+}
+.btn-ST{
+    font-family:'Fredoka', sans-serif;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-right: 150px;
+    font-weight: 600;
+    width: 80px;
+    margin-top: 10px;
+}

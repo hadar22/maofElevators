@@ -12,6 +12,7 @@ const db = mysql.createPool({
     password:'password2#',
     database: 'maofele',
     multipleStatements: true,
+    timezone: 'utc'
 });
 
 app.use(cors())
@@ -100,6 +101,28 @@ app.get('/planning/:username', (req, res) =>{
         
     });
 });
+app.post('/notNeed/:username',(req,res)=>{
+    const username = req.params.username
+    const sql = "UPDATE project_info SET notNeedEngineer = '1' WHERE username = ?;"
+    db.query(sql,[username],(err,result)=>{
+        if(err){
+            res.send({err: err})
+        }else{
+            res.send(result) 
+        }
+    })
+})
+app.get('/notNeed/:username',(req,res)=>{
+    const username = req.params.username
+    const sql = "SELECT notNeedEngineer FROM project_info WHERE username = ?;"
+    db.query(sql,[username],(err,result)=>{
+        if(err){
+            res.send({err: err})
+        }else{
+            res.send(result) 
+        }
+    })
+})
 app.post('/planning/:username',(req, res) =>{
     const username = req.params.username
     const sql =  "UPDATE project_info SET planning = '1' WHERE username = ?;"

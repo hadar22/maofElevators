@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css';
-import {Link } from 'react-router-dom';
+
 //import * as Icons from "react-icons/fa";
 
 function Footer() {
@@ -18,8 +18,8 @@ function Footer() {
                      target="_blank">
                      
                      
-                         <i className="fab fa-facebook-f"> 
-                         </i>בואו לבקר בדף הפייסבוק שלנו 
+                         <i className="fab fa-facebook-f"> </i>
+                         בואו לבקר בדף הפייסבוק שלנו  
                          </a>
                     </div>
                 </div>

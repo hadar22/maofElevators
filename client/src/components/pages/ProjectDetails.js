@@ -78,13 +78,16 @@ function ProjectDetails(){
             }
             if(response.data[0].electricCompany !== null){
                 
-                setElectricCompany(getDate(response.data[0].electricCompany))
+                setElectricCompany(response.data[0].electricCompany.split('T')[0])
             }
             if(response.data[0].standardsInstitute !== null){
-                setStandardsInstitute(getDate(response.data[0].standardsInstitute))
+                setStandardsInstitute(response.data[0].standardsInstitute.split('T')[0])
             }
             if(response.data[0].receivElevator !== null){
-                setReceivElevator(getDate(response.data[0].receivElevator))
+                setReceivElevator(response.data[0].receivElevator.split('T')[0])
+            }
+            if(response.data[0].notNeedEngineer !== null){
+                setNoEngineer(true)
             }
         })
         
@@ -126,12 +129,7 @@ function ProjectDetails(){
         setReceivElevator(receivElevator)
     
     }
-    const ddd = ()=>{
-        Axios.get('http://localhost:3001/getDatee').then((response)=>{
-            console.log("get thhe date-", response.data)
-        })
-        
-    }
+    
    
     
    
@@ -159,23 +157,10 @@ function ProjectDetails(){
         alert('שם המהנדס נשמר במערכת')
     }
     const no_engineer=()=>{
+        Axios.post(`http://localhost:3001/notNeed/${username}`)
         setNoEngineer(true)
     }
-    const getDate = (date)=> {
-        console.log("date" ,date)
-        const [d, ] = date.split("T")
-        const [y,m,day] =d.split("-")
-        const dayNew = parseFloat(day)+1
-        const stringDay = dayNew.toString()
-        let newDate = ""
-        if(dayNew<10){
-            newDate = "0"+stringDay+"/"+m+"/"+y
-        }else{
-            newDate = stringDay+"/"+m+"/"+y
-        }
-        console.log(stringDay+"/"+m+"/"+y )
-        return newDate
-    }
+    
     const fileType = ['application/pdf']
     const handlePdfFileChange = (e)=>{
         console.log(e.target.files[0])
@@ -237,8 +222,8 @@ function ProjectDetails(){
             
             <h1 className='title'>עדכון פרטים ל{username}</h1>
             {A? <div className='map'>{info.map((val)=>{ return <h1 className='font-info'> משרד העבודה: {val.workOffice} <br/>
-                  תאריך חתימת חוזה: {getDate(val.dateSignature) } <br/>
-                  תאריך גמר: {getDate(val.endDate)}<br/>
+                  תאריך חתימת חוזה: {val.dateSignature.split('T')[0] } <br/>
+                  תאריך גמר: {val.endDate.split('T')[0]}<br/>
                   סוג המעלית: {val.elevatorType}
                  
                   </h1> 
@@ -267,8 +252,6 @@ function ProjectDetails(){
                             <input name="endDate" placeholder='תאריך גמר הפרויקט' type="date" value= {endDate} onChange ={e => setEndDate(e.target.value)}/>
                         </div>
                         
-                        
-                
                         <button className='butt' onClick={updateA}>עדכן שלב א</button>
                         
                     </form> </div>}
@@ -289,11 +272,11 @@ function ProjectDetails(){
                     
             <div className='engineer'>
               
-            {addEngin? <div> {noEngineer? <h1>לפרויקט זה לא צריך היתר בנייה</h1> : <h1>שם המהנדס- {engineer}</h1>}</div> :<div>
+            {addEngin | noEngineer ?  <div> {noEngineer? <h1>לפרויקט זה לא צריך היתר בנייה</h1> : <h1>שם המהנדס- {engineer}</h1>}</div> :<div>
                     <p className='ans'>?האם צריך היתר בנייה</p>
                     <div>
-                       <button onClick={togglePopup}>כן</button>
-                       <button onClick={no_engineer}>לא</button>
+                       <button className='btn-PD' onClick={togglePopup}>כן</button>
+                       <button className='btn-PD' onClick={no_engineer}>לא</button>
                     </div>
                     
                 </div> }
@@ -303,14 +286,14 @@ function ProjectDetails(){
             </div>
             <div className='levelB'>
                 <h1 className='title'>שלב ב</h1>
-                {Planning ? <div><h1 className='font-info'>שלב התכנון מול ספקים בוצע</h1> </div> :<div>
+                {Planning ? <div><h1 className='font-info'>שלב התכנון מול ספקים בוצע <i className="fas fa-check-square"></i></h1> </div> :<div>
                     <h1 className='font-info'>אנא בצע את תכנון המעלית מול ספקים </h1>
-                    <button onClick={planning}>סיימתי</button>
+                    <button className='btn-PD' onClick={planning}>סיימתי</button>
                 </div> }
                 {Procurement ? <div>
-                    <h1 className='font-info'>תהליך הרכש בוצע</h1>
+                    <h1 className='font-info'>תהליך הרכש בוצע <i className="fas fa-check-square"></i></h1>
                 </div> :<div><h1 className='font-info'>אנא בצע רכישה של כל החלקים למעלית</h1>
-                <button type='submit' onClick={procurement}>רכשתי הכל</button></div> }
+                <button className='btn-PD' type='submit' onClick={procurement}>רכשתי הכל</button></div> }
 
             </div>
 
@@ -359,10 +342,10 @@ function ProjectDetails(){
                 <h3>התקשר למכון התקנים לתאם בדיקה</h3>
                 <form className='elec-data'>
                         <div className="input_field">
-                            <label for='standardsInstitute'>תאריך לבדיקת מכון התקנים</label><br/>
+                            <label for='standardsInstitute'>:תאריך לבדיקת מכון התקנים {standardsInstitute}</label><br/>
                             <input name="standardsInstitute" type="date" value={standardsInstitute} onChange={e => setStandardsInstitute(e.target.value)}/><br/>
                         </div>
-                        <button onClick={dateOfStandardsInstitute}>שמור/עדכן</button>
+                        <button className='btn-PD' onClick={dateOfStandardsInstitute}>שמור/עדכן</button>
                     </form>
                 </div>
                 <div className='card-D'>
@@ -370,10 +353,10 @@ function ProjectDetails(){
                 <h3>התקשר לחברת החשמל </h3>
                     <form className='elec-data'>
                         <div className="input_field">
-                            <label for='electricCompany'>תאריך לטופס 4</label><br/>
+                            <label for='electricCompany'>תאריך לטופס 4: {electricCompany}</label><br/>
                             <input name="electricCompany" type="date" value={electricCompany} onChange={e => setElectricCompany(e.target.value)}/><br/>
                         </div>
-                        <button onClick={dateOfElectric}>שמור/עדכן</button>
+                        <button className='btn-PD' onClick={dateOfElectric}>שמור/עדכן</button>
                     </form>
                 </div>
                 
@@ -387,7 +370,7 @@ function ProjectDetails(){
                             <label for='receivElevator'>תאריך יום קבלת המעלית : {receivElevator}</label><br/>
                             <input name="receivElevator" type="date" value={receivElevator} onChange={e => setReceivElevator(e.target.value)}/><br/>
                         </div>
-                        <button onClick={dateOfReceivElevator}>שמור/עדכן</button>
+                        <button className='btn-PD' onClick={dateOfReceivElevator}>שמור/עדכן</button>
                     </form>
 
                 

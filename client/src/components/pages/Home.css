@@ -68,10 +68,7 @@
 
   
 }
-.home.home_img{
-   position: absolute;
-   
-}
+
 @media screen and (max-width: 960px){
     .title{
        font-size: 1rem;

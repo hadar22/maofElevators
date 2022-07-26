@@ -1,0 +1,15 @@
+.process{
+    padding-top: 10%;
+    direction: rtl;
+    text-align: center;
+    background-color: ghostwhite;
+}
+.stage-txt{
+    font-family:'Fredoka', sans-serif;
+    color: crimson;
+}
+.fa-arrow-down{
+    font-size: 20px;
+    color: cornflowerblue;
+}
+
