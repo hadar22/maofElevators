@@ -6,4 +6,10 @@ Existing documents:<br />
 [Requirements Document](https://github.com/hadar22/maofElevators/blob/master/Requirements%20Document.docx)<br />
 [diagram of screens](https://github.com/hadar22/maofElevators/blob/master/%D7%AA%D7%A8%D7%A9%D7%99%D7%9D%20%D7%9E%D7%A1%D7%9B%D7%99%D7%9D.pdf)<br />
 [SDD](https://github.com/hadar22/maofElevators/blob/master/SDD.pdf)<br />
+[Poster]
+
+The system is a 3-tier web application (browser,application server, data server)<br />
+Server-side: NodeJs, express (The only one that communicates directly with the MySQL database. <br />
+Client-side: React <br /> 
+Database: MySQL, Firebase <br />
 
