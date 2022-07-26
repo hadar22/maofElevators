@@ -17,7 +17,7 @@ Database: MySQL, Firebase <br />
 
 ## What's in the project?
 Navbar and footer that appear on all pages.<br/>
-![alt text](https://github.com/hadar22/maofElevators/blob/master/images/nav%26Footer.PNG =250x250)
+![alt text](https://github.com/hadar22/maofElevators/blob/master/images/nav%26Footer.PNG){:height="36px" width="36px"}.
 
 Projects page - where there are pictures from existing projects and an explanation of each project.
 
