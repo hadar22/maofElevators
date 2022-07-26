@@ -80,7 +80,7 @@ function Manager(){
            content={
              <div className='add_user'>
                 <form className='form-add_user'>  
-                 <h1 className='title-add' > הוסף לקוח חדש </h1>
+                 <h1 className='title-add' > הוסף פרויקט חדש </h1>
                  <div className="input_field">
                    <label  for="username">שם הפרויקט </label><br/>
                    <input name="username" placeholder="כתובת_מספר_עיר" type="text" value={username} onChange={e => setUsername(e.target.value)}/><br/>

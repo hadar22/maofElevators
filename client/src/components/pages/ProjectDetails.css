@@ -44,7 +44,7 @@
 }
 .engineer{
     text-align: center;
-    background-color: darkgrey;
+    background-color: aliceblue;
     margin-bottom: 10px;
 
 }
@@ -52,7 +52,7 @@
     padding-top: 10px;
     direction: rtl;
     padding-right: 60px;
-    background-color: rgb(240, 162, 162);
+    background-color: cadetblue;
     padding-bottom: 20px;
 }
 .pdf-container{
@@ -100,16 +100,18 @@ select{
 }
 .levelC{
    text-align: right;
-   background-color: #dedee1;
+   background-color: aliceblue;
    margin-top: 10px;
 }
 .btn{
     margin-right: 70px;
 }
 .levelD{
+    margin-top: 10px;
     grid-template-columns: repeat(2,800cm);
     grid-gap: 150px;
     padding-left: 150px;
+    background-color: darkturquoise;
 }
 .card-D{
     display: table-cell;
@@ -118,9 +120,11 @@ select{
     padding: 20px 70px 50px 80px;
 }
 .levelE{
+    margin-top: 10px;
     text-align: center;
     align-items: center;
     padding-bottom: 30px;
+    background-color: powderblue;
 }
 .work-plan{
     direction: rtl;
