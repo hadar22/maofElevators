@@ -15,8 +15,8 @@ Database: MySQL, Firebase <br />
 
 (I used the axios library which allows making HTTP requests in an easy and pleasant way.) <br />
 # Diagrams
-![alt text](https://github.com/hadar22/maofElevators/blob/master/images/uml1.PNG)
-![alt text](https://github.com/hadar22/maofElevators/blob/master/images/uml2.PNG)
+![alt text](https://github.com/hadar22/maofElevators/blob/master/images/uml1.png)
+![alt text](https://github.com/hadar22/maofElevators/blob/master/images/uml2.png)
 
 
 ## What's in the project?
