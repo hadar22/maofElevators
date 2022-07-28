@@ -14,6 +14,10 @@ Client-side: React <br />
 Database: MySQL, Firebase <br />
 
 (I used the axios library which allows making HTTP requests in an easy and pleasant way.) <br />
+# Diagrams
+![alt text](https://github.com/hadar22/maofElevators/blob/master/images/uml1.PNG)
+![alt text](https://github.com/hadar22/maofElevators/blob/master/images/uml2.PNG)
+
 
 ## What's in the project?
 Navbar and footer that appear on all pages.<br/>
@@ -27,7 +31,7 @@ https://user-images.githubusercontent.com/57917375/181063944-83c55b78-a1ff-466d-
 
 
 
-Contact page - I used emailjs-com. <br/>
+Contact page - I used `emailjs-com` <br/>
 A customer enters his details and clicks send, the details are sent directly to the company's email in an orderly manner.<br/>
 That way the company secretary will be able to get back to all interested parties.<br/>
 
